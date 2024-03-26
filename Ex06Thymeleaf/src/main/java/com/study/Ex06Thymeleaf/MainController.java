@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Controller
 public class MainController {
   @GetMapping("/")
@@ -22,6 +26,25 @@ public class MainController {
     model.addAttribute("name_text", "<ins>홍길동</ins>");
     model.addAttribute("name_html", "<ins>홍길동</ins>");
     return "index"; // index.html 동적 HTML로 응답함.
+  }
+  @GetMapping("/index2")
+  public String index2(Model model){
+    model.addAttribute("address", "한양");
+    model.addAttribute("address_null", null);
+    model.addAttribute("address_empty", "");
+    return "index2";
+  }
+
+  @GetMapping("/index3")
+  public String index3(Model model){
+    model.addAttribute("standardDate", new Date());
+    model.addAttribute("localDate", LocalDate.now() );
+    model.addAttribute("localDateTime", LocalDateTime.now() );
+
+    model.addAttribute( "number1", 12345678 );
+    model.addAttribute( "number2", 123456.789 );
+
+    return "index3"; //index3.html로 응답함.
   }
 
   // FrontEd - HTML에서 서버로 데이터를 전송하는 방법
