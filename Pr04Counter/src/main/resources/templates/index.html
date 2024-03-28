@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2 id="count" th:text="|카운트 : ${count}|">카운트 : 0</h2>
+<!--    <button onClick="plus()">더하기</button>-->
+<!--    <button onClick="minus()">빼기</button>-->
+    <button onClick="api_plus()">더하기</button>
+    <button onClick="api_minus()">빼기</button>
+
+    <script>
+        // function plus(){
+        //     window.location.href = "/plus"; //http://localhost:8080/plus
+        // }
+        // function minus(){
+        //     window.location.href = "/minus" //http://localhost:8080/minus
+        // }
+        function api_plus() {
+            fetch("/api/plus", {
+                method: "GET",
+                headers: {"Content-Type": "application/json"},
+            })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((json) => {
+                    console.log(json);
+                    document.getElementById("count").innerText = '카운트 : '+json;
+                })
+        }
+        function api_minus() {
+            fetch("/api/minus", {
+                method: "GET",
+                headers: {"Content-Type": "application/json"},
+            })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((json) => {
+                    console.log(json);
+                    document.getElementById("count").innerText = '카운트 : '+json;
+                })
+        }
+    </script>
+</body>
+</html>

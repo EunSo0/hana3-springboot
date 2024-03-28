@@ -1,5 +1,8 @@
 package com.study.Ex05StaticWeb;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
 //Request Mapping : HTTP 요청에 대한 경로와 응답 메소드를 정의한다.
 //@GetMapping : 사용자의 HTTP Get요청에 대한 응답 경로와 메서드를 정의합니다.
 //@PostMapping : Post요청에 대한 응답 경로와 메서드를 정의합니다.
@@ -20,15 +23,12 @@ package com.study.Ex05StaticWeb;
 //@RequestMapping(value = "/", method = RequestMethod.GET)
 //@RequestMapping(value = "/", method = RequestMethod.POST)
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 @Controller
 public class MainController {
-  @GetMapping("/")
-  // @ResponseBody : 문자열로 응답
-  public String main() {
-    return "index.html"; // index.html로 응답함.
-  }
+    @GetMapping("/")
+    //@ResponseBody : 문자열로 응답
+    public String main(){
+        return "index.html"; //index.html로 응답함.
+    }
+
 }

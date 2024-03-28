@@ -1,6 +1,7 @@
 package com.study.Ex04Lombok;
 
-// 인텔리제이 보기>도구 창>구조 화면에서 확인한다.
+//인텔리제이 보기>도구 창>구조 화면에서 확인한다.
+
 //롬복이 지원하는 어노테이션 목록
 //@Getter : getter 자동생성
 //@Setter : setter 자동생성
@@ -27,10 +28,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Data
 public class Member {
-  private String name;
-  // private final int age; //RequiredArgsContructor 동작시
-  @NonNull
-  private String phone;
-  @Nullable
-  private String email;
+    private String name;
+    //private final int age; //RequiredArgsConstructor 동작시
+    @NonNull
+    private String phone;
+    @Nullable
+    private String email;
 }

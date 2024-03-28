@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>계산기</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="flex flex-column justify-center m-5">
+    <form class="flex flex-col w-1.0 gap-1" method="get">
+        <label class="flex justify-between">
+            숫자 1
+            <input class="bg-gray-300 border border-gray-500 p-1 text-center mx-2" name="a" type="number"
+                   id="num1"/>
+        </label>
+        <label class="flex justify-between">
+            숫자 2
+            <input class="bg-gray-300 border border-gray-500 p-1 text-center mx-2" name="b" type="number"
+                   id="num2"/>
+        </label>
+        <label class="flex justify-between mb-2">
+            연산 결과
+            <input id="result" class="bg-gray-500 border border-gray-500 p-1 text-center mx-2 text-white"
+                   type="text" disabled/>
+        </label>
+        <button class="bg-blue-500 p-1 text-white" type="button" onclick="api_add()">덧셈</button>
+        <button class="bg-blue-500 p-1 text-white" type="button" onclick="api_sub()">뺄셈</button>
+        <button class="bg-blue-500 p-1 text-white" type="button" onclick="api_mul()">곱셈</button>
+        <button class="bg-blue-500 p-1 text-white" type="button" onclick="api_div()">나눗셈</button>
+        <button class="bg-red-500 p-1 text-white" type="button" onclick="resetAB()">지우기</button>
+    </form>
+</div>
+</body>
+<script>
+    function api_add(){
+        fetch("/api/add",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(({
+                a: document.getElementById("num1").value,
+                b: document.getElementById("num2").value,
+            }))
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                document.getElementById("result").value = json;
+            })
+    }
+    function api_sub(){
+        fetch("/api/sub",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(({
+                a: document.getElementById("num1").value,
+                b: document.getElementById("num2").value,
+            }))
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                document.getElementById("result").value = json;
+            })
+    }
+    function api_mul(){
+        fetch("/api/mul",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(({
+                a: document.getElementById("num1").value,
+                b: document.getElementById("num2").value,
+            }))
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                document.getElementById("result").value = json;
+            })
+    }
+    function api_div(){
+        fetch("/api/div",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(({
+                a: document.getElementById("num1").value,
+                b: document.getElementById("num2").value,
+            }))
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                document.getElementById("result").value = json;
+            })
+    }
+    const resetAB = () => {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("result").value = "";
+    }
+
+
+</script>
+</html>

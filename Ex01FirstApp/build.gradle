@@ -5,15 +5,15 @@ plugins {
 }
 
 group = 'com.study'
-version = '0.0.1-SNAPSHOT'
+version = '1.0-RELEASE'
 
 java {
 	sourceCompatibility = '17'
 }
 
+//jcenter()
 repositories {
 	mavenCentral()
-	// jcenter() // 안드로이드에서 사용
 }
 
 dependencies {

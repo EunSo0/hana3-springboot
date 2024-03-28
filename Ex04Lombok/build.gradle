@@ -21,8 +21,8 @@ repositories {
 	mavenCentral()
 }
 
-// compileOnly : 컴파일(빌드구성)시에만 동작함
-// annotationProcessor : 컴파일 전 어노테이션 선언시에 동작
+//compileOnly : 컴파일(빌드구성)시에만 동작함.
+//annotationProcessor : 컴파일 전 어노테이션 선언시에 동작
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'

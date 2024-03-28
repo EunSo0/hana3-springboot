@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component("kakaoCard")
 public class KakaoCard implements ICard{
-  @Override
-  public void buy(String itemName){
-    System.out.println("kakao카드로 "+itemName+"을 샀다");
-  }
+    @Override
+    public void buy(String itemName) {
+        System.out.println("KakaoCard : "+itemName);
+    }
 }
