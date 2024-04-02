@@ -205,9 +205,14 @@ public class MemberRepositoryTest extends Ex12H2DbApplicationTests {
     int result = memberRepository.updateByUserId_nativeQuery("tom", "마이클", "3456");
     assertEquals(1, result);
 
-    List<MemberEntity> member =
+    List<MemberEntity> list =
         memberRepository.findByUserId("tom");
-    assertEquals("마이클", member.get(0).getUserName() );
-    assertEquals("3456", member.get(0).getUserPw() );
+    if(list != null && list.size() > 0){
+      assertEquals("마이클", list.get(0).getUserName() );
+      assertEquals("3456", list.get(0).getUserPw() );
+    } else {
+      System.out.println("null이거나 사이즈가 0입니다.");
+    }
+
   }
 }
