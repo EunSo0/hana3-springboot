@@ -46,8 +46,6 @@ public class MainController {
         .build();
     list.add(product);
 
-    System.out.println("size"+list.size());
-
     return "<script>alert('상품이 추가되었습니다.'); location.href='/';</script>";
 //    return "redirect:/";
     // 웹브라우저에게 응답을 주면서, 리다이렉트할 경로를 전달하면, 웹브라우저는 받자마자 이 경로로 다시 요청한다.
