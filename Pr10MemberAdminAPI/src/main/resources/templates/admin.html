@@ -1,10 +1,121 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html
+        lang="ko"
+>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <title>관리자 페이지</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous"
+    />
 </head>
 <body>
-$END$
+<!--    번호 아이디 암호 이메일       -->
+<!--    1   admin 1111 abc@test.com-->
+<!--    2   tom   2222 tom@test.com-->
+<!--    3   hana  3333 hana@test.com-->
+
+<div
+        class="container-fluid p-4"
+        style="background-color: #eee"
+>
+    <div class="row">
+        <div
+                class="container-fluid"
+                style="
+            background-color: white;
+            max-width: 1200px;
+            border-radius: 20px;
+          "
+        >
+            <h1 class="my-5 text-center">관리자페이지 - 회원목록</h1>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>아이디</th>
+                        <th>암호</th>
+                        <th>이메일</th>
+                        <th>가입일</th>
+                        <th class="text-center">수정</th>
+                        <th class="text-center">삭제</th>
+                    </tr>
+                </thead>
+                <tbody id="product-tbody">
+                </tbody>
+            </table>
+
+            <div class="text-center my-5">
+                <a
+                        href="/"
+                        class="btn btn-primary"
+                        role="button"
+                >회원가입</a
+                >
+                <a
+                        href="/login-form"
+                        class="btn btn-danger"
+                        role="button"
+                >로그인</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", (event) => {
+        getMemberList();
+    })
+    function getMemberList(){
+        fetch("/api/v1/memberList",{
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                makeMemberList(json);
+            })
+    }
+    function makeMemberList(memberList){
+        let tbody = document.getElementById("product-tbody");
+
+        memberList.forEach(( member, index) => {
+            let trStr = `<tr>
+                    <td>${index+1}</td>
+                    <td>${member.username}</td>
+                    <td>${member.password}</td>
+                    <td>${member.email}</td>
+                    <td>${member.joindate}</td>
+                    <td class="text-center">
+                        <a
+                                href="/update-form?index=1"
+                                class="btn btn-danger"
+                                role="button"
+                        >수정</a
+                        >
+                    </td>
+                    <td class="text-center">
+                        <a
+                                href="/delete?index=1"
+                                class="btn btn-danger"
+                                role="button"
+                        >삭제</a
+                        >
+                    </td>
+                </tr>`;
+
+            tbody.insertAdjacentHTML('beforeend', trStr);
+        })
+    }
+</script>
 </body>
 </html>
